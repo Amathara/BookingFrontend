@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
 import axios from "axios";
+import { useState } from "react";
+import { Button, StyleSheet, Text, View } from "react-native";
 
-export default function App() {
+export default function Axios() {
  
     const [advice, setAdvice] = useState("");
 
@@ -22,7 +22,7 @@ export default function App() {
         setAdvice(response.data.slip.advice);
       })
 
-    };
+    }; 
     
   
 
