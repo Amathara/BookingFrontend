@@ -1,3 +1,9 @@
+# I followed this tutorial from "Expo":
+
+https://www.youtube.com/watch?v=zHZjJDTTHJg
+
+-but added my own "Reset App" button to the settings screen.
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
