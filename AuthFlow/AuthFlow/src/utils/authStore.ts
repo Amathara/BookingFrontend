@@ -57,6 +57,8 @@ export const useAuthStore = create(
             return{
             ...state,
             hasCompletedOnboarding:false,
+            isLoggedIn: false,
+            isVip:false,
         };
         });    
     },
