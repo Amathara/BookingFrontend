@@ -1,17 +1,29 @@
-import { Text, View, StyleSheet } from "react-native";
+import { styles } from "@/assets/StyleSheets/Styles";
+import { Image } from 'expo-image';
+import { ScrollView, View } from "react-native";
+import Axios from "../app/AxiosExample";
+import Cafe from "../app/catCafe";
+const thisImage = require('@/assets/images/expo-badge.png')
 
-export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
-    </View>
-  );
-}
+const App = () => {
+    return (
+        <ScrollView>
+       <View>
+        <Cafe/>
+       </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+
+       <View>
+        <Axios/>
+       </View>
+
+       <View>
+        <Image source={thisImage} style={styles.image}/>
+       </View>
+       </ScrollView>
+
+    );
+};
+
+
+export default App;
