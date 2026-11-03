@@ -6,10 +6,14 @@ type UserState = {
     isLoggedIn: boolean;
     shouldCreateAccount: boolean;
     hasCompletedOnboarding: boolean;
+    isVip: boolean;
+
+
     logIn:() => void;
     logOut:() => void;
     completeOnboarding:() => void;
     resetOnboarding:() => void;
+    logInAsVip: () => void;
 }
 
 export const useAuthStore = create(
@@ -18,6 +22,7 @@ export const useAuthStore = create(
     isLoggedIn: false,
     shouldCreateAccount: false,
     hasCompletedOnboarding: false,
+    isVip: false,
 
     logIn: () => {
         set((state) => {
@@ -33,6 +38,7 @@ export const useAuthStore = create(
             return{
             ...state,
             isLoggedIn:false,
+            isVip: false,
         };
         });    
     },
@@ -55,6 +61,15 @@ export const useAuthStore = create(
         });    
     },
 
+    logInAsVip: () => {
+        set((state) => {
+            return{
+            ...state,
+            isLoggedIn: true,
+            isVip:true,
+        };
+        });    
+    },
 
 }),
 {
