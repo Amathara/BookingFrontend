@@ -1,17 +1,17 @@
-import { Text, View, StyleSheet } from "react-native";
+import { View, Text, Button } from "react-native";
+import { useAuthStore } from "@/utils/authStore";
 
 export default function Index() {
-  return (
-    <View style={styles.container}>
-      <Text>Edit src/app/index.tsx to edit this screen.</Text>
-    </View>
-  );
-}
+    const { logOut } = useAuthStore();
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+    return (
+        <View>
+            <Text>Home screen</Text>
+
+            <Button
+                title="Log out"
+                onPress={logOut}
+            />
+        </View>
+    );
+}
