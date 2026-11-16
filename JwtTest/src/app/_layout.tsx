@@ -8,8 +8,7 @@ export default function RootLayout() {
     const {
     isLoggedIn,
     shouldCreateAccount,
-    hasCompletedOnboarding,
-    isVip,
+    isAdmin,
     isAuthReady,
     initializeAuth
 } = useAuthStore();
@@ -25,15 +24,19 @@ export default function RootLayout() {
 
     return (
       <Stack>
-            <Stack.Protected guard={!isLoggedIn}>
+        <Stack.Protected guard={!isLoggedIn && shouldCreateAccount}>
+                <Stack.Screen name="signUp" />
+        </Stack.Protected>
+
+            <Stack.Protected guard={!isLoggedIn && !shouldCreateAccount}>
                 <Stack.Screen name="logIn" />
             </Stack.Protected>
 
-            <Stack.Protected guard={isLoggedIn}>
+            <Stack.Protected guard={isLoggedIn && !isAdmin}>
                 <Stack.Screen name="index" />
             </Stack.Protected>
 
-            <Stack.Protected guard={isLoggedIn && isVip}>
+            <Stack.Protected guard={isLoggedIn && isAdmin}>
                 <Stack.Screen name="admin" />
             </Stack.Protected>
         </Stack>

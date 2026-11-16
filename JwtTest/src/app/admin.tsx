@@ -1,10 +1,16 @@
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import React from 'react'
+import { useAuthStore } from '@/utils/authStore';
 
 const AdminScreen = () => {
+  const { logOut } = useAuthStore();
   return (
     <View>
-      <Text>home</Text>
+      <Text>Admin screen!</Text>
+      <Button
+                title="Log out"
+                onPress={logOut}
+            />
     </View>
   )
 }

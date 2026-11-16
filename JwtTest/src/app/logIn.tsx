@@ -3,7 +3,8 @@ import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 import { useAuthStore } from "@/utils/authStore";
 
 export default function Login() {
-    const { logIn } = useAuthStore();
+    const { logIn, resetOnboarding } = useAuthStore();
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -42,6 +43,9 @@ export default function Login() {
             {error ? <Text style={styles.error}>{error}</Text> : null}
 
             <Button title="Log in" onPress={handleLogin} />
+            <View style={styles.button}>
+                <Button title="Sign Up" onPress={resetOnboarding} />
+            </View>
         </View>
     );
 }
@@ -69,4 +73,8 @@ const styles = StyleSheet.create({
         color: "red",
         marginBottom: 12,
     },
+
+    button: {
+        marginTop: 10,
+    }
 });

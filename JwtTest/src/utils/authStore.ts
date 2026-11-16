@@ -8,8 +8,7 @@ import {User} from "@/types/user";
 type UserState = {
     isLoggedIn: boolean;
     shouldCreateAccount: boolean;
-    hasCompletedOnboarding: boolean;
-    isVip: boolean;
+    isAdmin: boolean;
     isAuthReady: boolean;
     user: User | null;
 
@@ -18,9 +17,9 @@ type UserState = {
     logIn:(email: string, password: string) => Promise<any>;
     logOut:() => Promise<void>;
 
-    completeOnboarding:() => void;
+    completeSignUp:() => void;
     resetOnboarding:() => void;
-    logInAsVip: () => void;
+    // logInAsVip: () => void;
     initializeAuth: () => Promise<void>;
 }
 
@@ -31,9 +30,8 @@ export const useAuthStore = create(
     persist<UserState>((set) => ({
 
     isLoggedIn: false,
-    shouldCreateAccount: false,
-    hasCompletedOnboarding: false,
-    isVip: false,
+    shouldCreateAccount: true,
+    isAdmin: false,
     isAuthReady: false,
     user: null,
 
@@ -63,6 +61,7 @@ export const useAuthStore = create(
             return{
             ...state,
             isLoggedIn:true,
+            isAdmin: user.data.role === "admin",
             user: {
             id: user.data.id,
             username: user.data.username,
@@ -89,17 +88,17 @@ export const useAuthStore = create(
             ...state,
             
             isLoggedIn:false,
-            isVip: false,
+            isAdmin: false,
             user: null,
         };
         });    
     },
 
-    completeOnboarding: () => {
+    completeSignUp: () => {
         set((state) => {
             return{
             ...state,
-            hasCompletedOnboarding:true,
+            shouldCreateAccount: false,
         };
         });    
     },
@@ -108,9 +107,9 @@ export const useAuthStore = create(
         set((state) => {
             return{
             ...state,
-            hasCompletedOnboarding:false,
+            shouldCreateAccount: true,
             isLoggedIn: false,
-            isVip:false,
+            isAdmin:false,
             user: null,
         };
         });    
@@ -121,7 +120,7 @@ export const useAuthStore = create(
             return{
             ...state,
             isLoggedIn: true,
-            isVip:true,
+            isAdmin:true,
         };
         });    
     },
